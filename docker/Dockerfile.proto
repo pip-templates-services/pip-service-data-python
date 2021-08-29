@@ -1,0 +1,22 @@
+# Build stage
+FROM python:3
+
+# set working directory
+WORKDIR /app
+
+# package name
+ARG COMPONENT_NAME
+ENV COMPONENT_NAME=$COMPONENT_NAME
+
+RUN export COMPONENT_NAME=$(echo $COMPONENT_NAME | sed -r 's/-/_/g')
+
+COPY . .
+
+# Add protoc plugin
+RUN pip install --upgrade pip
+RUN pip install grpcio-tools
+
+# Generate
+RUN cd $COMPONENT_NAME/protos && python -m grpc.tools.protoc --proto_path=. --python_out=. --grpc_python_out=. ./entities_v1.proto
+# Fix imports in generate files
+RUN cd $COMPONENT_NAME/protos && sed -i 's/^\(import.*pb2\)/from . \1/g' *.py

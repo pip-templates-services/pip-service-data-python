@@ -1,0 +1,16 @@
+pytest
+
+pip-services3-aws
+pip-services3-commons
+pip-services3-components
+pip-services3-container
+pip-services3-data
+pip-services3-elasticsearch
+pip-services3-grpc
+pip-services3-mongodb
+pip-services3-mysql
+pip-services3-postgres
+pip-services3-prometheus
+pip-services3-rpc
+pip-services3-sqlserver
+pip-services3-swagger
