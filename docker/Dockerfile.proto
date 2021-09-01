@@ -8,9 +8,6 @@ WORKDIR /app
 ARG COMPONENT_NAME
 ENV COMPONENT_NAME=$COMPONENT_NAME
 
-# getting folder name from component name
-RUN export COMPONENT_NAME=$(echo $COMPONENT_NAME | sed -r 's/-/_/g')
-
 COPY . .
 
 # Add protoc plugin
