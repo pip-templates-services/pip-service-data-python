@@ -1,3 +1,4 @@
+# Build stage
 FROM python:3.9-slim-buster
 
 # set working directory

@@ -15,7 +15,7 @@ if (Test-Path "docs") {
 }
 
 # Build docker image
-docker build --build-arg COMPONENT_NAME="$($component.name)" -f docker/Dockerfile.docs -t $docsImage .
+docker build --build-arg COMPONENT_NAME="$($component.name.replace('-', '_'))" -f docker/Dockerfile.docs -t $docsImage .
 
 # Create and copy compiled files, then destroy
 docker create --name $container $docsImage

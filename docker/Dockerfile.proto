@@ -1,5 +1,5 @@
 # Build stage
-FROM python:3
+FROM python:3.9-slim-buster
 
 # set working directory
 WORKDIR /app
@@ -8,6 +8,7 @@ WORKDIR /app
 ARG COMPONENT_NAME
 ENV COMPONENT_NAME=$COMPONENT_NAME
 
+# getting folder name from component name
 RUN export COMPONENT_NAME=$(echo $COMPONENT_NAME | sed -r 's/-/_/g')
 
 COPY . .
