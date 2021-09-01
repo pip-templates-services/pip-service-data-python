@@ -13,7 +13,7 @@ try {
     New-Item -ItemType Directory -Force -Path "tmp"
     New-Item -ItemType Directory -Force -Path "tmp/config"
     Copy-Item ./config/config.yml ./tmp/config/config.yml
-    Copy-Item -Recurse ./package ./tmp/
+    Copy-Item -Recurse ./package/* ./tmp/
     Copy-Item ./bin/lambda_function.py ./tmp/lambda_function.py
 
     # Create dist folder
@@ -39,5 +39,8 @@ try {
 finally {
     if (Test-Path "tmp") {
         Remove-Item -Recurse -Force -Path "tmp"
+    }
+    if (Test-Path "package") {
+        Remove-Item -Recurse -Force -Path "package"
     }
 }

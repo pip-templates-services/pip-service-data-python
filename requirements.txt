@@ -14,3 +14,7 @@ pip-services3-prometheus
 pip-services3-rpc
 pip-services3-sqlserver
 pip-services3-swagger
+
+# for lambda deploy
+git+https://github.com/pip-templates-services/pip-service-data-python
+pip-service-data-python
