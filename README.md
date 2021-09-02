@@ -47,6 +47,7 @@ for individual components, their build, test and packaging. DevOps are responsib
   - [Golang SDK](https://github.com/pip-templates-services/pip-client-data-go)
 * [API Reference](https://pip-templates-services.github.io/pip-service-data-python/index.html)
 * [Change Log](CHANGELOG.md)
+* [Packing pyodbc driver for SQLServer on AWS Lambda](https://medium.com/@narayan.anurag/breaking-the-ice-between-aws-lambda-pyodbc-6f53d5e2bd26)
 
 
 ## Contract

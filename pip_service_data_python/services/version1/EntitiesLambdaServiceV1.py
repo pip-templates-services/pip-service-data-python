@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
 from pip_services3_aws.services.LambdaService import LambdaService
-from pip_services3_commons.convert import TypeCode
-from pip_services3_commons.data import DataPage, FilterParams, PagingParams
+from pip_services3_commons.convert import TypeCode, JsonConverter
+from pip_services3_commons.data import FilterParams, PagingParams
 from pip_services3_commons.refer import Descriptor, IReferences
 from pip_services3_commons.validate import PagingParamsSchema, FilterParamsSchema, ObjectSchema
 
-from pip_service_data_python.data.EntityV1 import EntityV1
 from pip_service_data_python.data.EntityV1Schema import EntityV1Schema
 from pip_service_data_python.logic.IEntitiesController import IEntitiesController
 
@@ -21,63 +20,69 @@ class EntitiesLambdaServiceV1(LambdaService):
         super().set_references(references)
         self.__controller = self._dependency_resolver.get_one_required('controller')
 
-    def get_entities(self, params: dict) -> DataPage:
+    def get_entities(self, params: dict) -> str:
         timing = self._instrument(params.get('correlation_id'), "get_entities")
         try:
-            return self.__controller.get_entities(params.get('correlation_id'),
-                                                  FilterParams(params.get('filter')),
-                                                  PagingParams(params.get('paging'))
-                                                  )
+            result = self.__controller.get_entities(params.get('correlation_id'),
+                                                    FilterParams(params.get('filter')),
+                                                    PagingParams(params.get('paging'))
+                                                    )
+            return JsonConverter.to_json(result)
         except Exception as err:
             timing.end_failure(err)
         finally:
             timing.end_success()
 
-    def get_entity_by_id(self, params: dict) -> EntityV1:
+    def get_entity_by_id(self, params: dict) -> str:
         timing = self._instrument(params.get('correlation_id'), "get_entity_by_id")
         try:
-            return self.__controller.get_entities_by_id(params.get('correlation_id'),
-                                                        params.get('entity_id'))
+            result = self.__controller.get_entities_by_id(params.get('correlation_id'),
+                                                          params.get('entity_id'))
+            return JsonConverter.to_json(result)
         except Exception as err:
             timing.end_failure(err)
         finally:
             timing.end_success()
 
-    def get_entity_by_name(self, params: dict) -> EntityV1:
+    def get_entity_by_name(self, params: dict) -> str:
         timing = self._instrument(params.get('correlation_id'), "get_entity_by_name")
         try:
-            return self.__controller.get_entity_by_name(params.get('correlation_id'),
-                                                        params.get('name'))
+            result = self.__controller.get_entity_by_name(params.get('correlation_id'),
+                                                          params.get('name'))
+            return JsonConverter.to_json(result)
         except Exception as err:
             timing.end_failure(err)
         finally:
             timing.end_success()
 
-    def create_entity(self, params: dict) -> EntityV1:
+    def create_entity(self, params: dict) -> str:
         timing = self._instrument(params.get('correlation_id'), "create_entity")
         try:
-            return self.__controller.create_entity(params.get('correlation_id'),
-                                                   params.get('entity'))
+            result = self.__controller.create_entity(params.get('correlation_id'),
+                                                     params.get('entity'))
+            return JsonConverter.to_json(result)
         except Exception as err:
             timing.end_failure(err)
         finally:
             timing.end_success()
 
-    def update_entity(self, params: dict) -> EntityV1:
+    def update_entity(self, params: dict) -> str:
         timing = self._instrument(params.get('correlation_id'), "update_entity")
         try:
-            return self.__controller.update_entity(params.get('correlation_id'),
-                                                   params.get('entity'))
+            result = self.__controller.update_entity(params.get('correlation_id'),
+                                                     params.get('entity'))
+            return JsonConverter.to_json(result)
         except Exception as err:
             timing.end_failure(err)
         finally:
             timing.end_success()
 
-    def delete_entity_by_id(self, params: dict) -> EntityV1:
+    def delete_entity_by_id(self, params: dict) -> str:
         timing = self._instrument(params.get('correlation_id'), "delete_entity_by_id")
         try:
-            return self.__controller.delete_entity_by_id(params.get('correlation_id'),
-                                                         params.get('entity_id'))
+            result = self.__controller.delete_entity_by_id(params.get('correlation_id'),
+                                                           params.get('entity_id'))
+            return JsonConverter.to_json(result)
         except Exception as err:
             timing.end_failure(err)
         finally:
