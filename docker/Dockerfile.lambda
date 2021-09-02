@@ -1,0 +1,21 @@
+# Build stage
+FROM python:3.9-slim-buster
+
+# set working directory
+WORKDIR /usr/src/app
+
+# system dependencies for sqlserver
+RUN apt-get update \
+    && apt-get -y install gcc \
+    && apt-get -y install g++ \
+    && apt-get -y install unixodbc unixodbc-dev \
+    && apt-get clean
+
+# install git for adding dependecies from git
+RUN apt-get -y install git
+
+# copy project file
+COPY . .
+
+# install dependencies
+RUN pip install -r requirements.txt --target ./package
