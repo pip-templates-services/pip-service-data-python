@@ -66,7 +66,8 @@ class EntitiesRestServiceV1(RestService):
 
     def create_entity(self):
         correlation_id = self._get_correlation_id()
-        data = json.loads(bottle.request.json)
+        data = bottle.request.json
+        data = data if isinstance(data, dict) else json.dumps(data)
         entity = EntityV1(**data)
 
         timing = self._instrument(correlation_id, 'create_entity')
@@ -81,7 +82,8 @@ class EntitiesRestServiceV1(RestService):
 
     def update_entity(self):
         correlation_id = self._get_correlation_id()
-        data = json.loads(bottle.request.json)
+        data = bottle.request.json
+        data = data if isinstance(data, dict) else json.dumps(data)
         entity = EntityV1(**data)
 
         timing = self._instrument(correlation_id, 'update_entity')

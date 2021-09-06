@@ -61,7 +61,7 @@ class TestEntitiesRestServiceV1:
 
     def test_crud_operations(self):
         # Create the first entity
-        response = requests.post(url + '/v1/entities/entities', json=json.dumps(ENTITY1.to_dict()))
+        response = requests.post(url + '/v1/entities/entities', json=ENTITY1.to_dict())
         entity = EntityV1(**json.loads(response.text))
         assert ENTITY1.name == entity.name
         assert ENTITY1.site_id == entity.site_id
@@ -70,7 +70,7 @@ class TestEntitiesRestServiceV1:
         assert entity.content is not None
 
         # Create the first entity
-        response = requests.post(url + '/v1/entities/entities', json=json.dumps(ENTITY2.to_dict()))
+        response = requests.post(url + '/v1/entities/entities', json=ENTITY2.to_dict())
         entity = EntityV1(**json.loads(response.text))
         assert ENTITY2.name == entity.name
         assert ENTITY2.site_id == entity.site_id
@@ -89,7 +89,7 @@ class TestEntitiesRestServiceV1:
         # Update the entity
         entity1.name = 'ABC'
 
-        response = requests.put(url + '/v1/entities/entities', json=json.dumps(entity1.to_dict()))
+        response = requests.put(url + '/v1/entities/entities', json=entity1.to_dict())
         entity = EntityV1(**json.loads(response.text))
 
         assert entity1.id == entity.id
