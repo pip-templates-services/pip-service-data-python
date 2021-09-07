@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
 from pip_services3_commons.refer import Descriptor
 from pip_services3_components.build import Factory
-from pip_services3_prometheus.build.DefaultPrometheusFactory import DefaultPrometheusFactory
 
 from pip_service_data_python.logic.EntitiesController import EntitiesController
 from pip_service_data_python.persistence.EntitiesFilePersistence import EntitiesFilePersistence
-# from pip_service_data_python.persistence.EntitiesJsonMySqlPersistence import EntitiesJsonMySqlPersistence
+from pip_service_data_python.persistence.EntitiesJsonMySqlPersistence import EntitiesJsonMySqlPersistence
 from pip_service_data_python.persistence.EntitiesJsonPostgresPersistence import EntitiesJsonPostgresPersistence
-# from pip_service_data_python.persistence.EntitiesJsonSqlServerPersistence import EntitiesJsonSqlServerPersistence
+from pip_service_data_python.persistence.EntitiesJsonSqlServerPersistence import EntitiesJsonSqlServerPersistence
 from pip_service_data_python.persistence.EntitiesMemoryPersistence import EntitiesMemoryPersistence
 from pip_service_data_python.persistence.EntitiesMongoDbPersistence import EntitiesMongoDbPersistence
-# from pip_service_data_python.persistence.EntitiesMySqlPersistence import EntitiesMySqlPersistence
+from pip_service_data_python.persistence.EntitiesMySqlPersistence import EntitiesMySqlPersistence
 from pip_service_data_python.persistence.EntitiesPostgresPersistence import EntitiesPostgresPersistence
-# from pip_service_data_python.persistence.EntitiesSqlServerPersistence import EntitiesSqlServerPersistence
+from pip_service_data_python.persistence.EntitiesSqlServerPersistence import EntitiesSqlServerPersistence
 from pip_service_data_python.services.version1.EntitiesCommandableGrpcServiceV1 import EntitiesCommandableGrpcServiceV1
 from pip_service_data_python.services.version1.EntitiesCommandableHttpServiceV1 import EntitiesCommandableHttpServiceV1
 from pip_service_data_python.services.version1.EntitiesCommandableLambdaServiceV1 import \
@@ -48,10 +47,10 @@ class EntitiesServiceFactory(Factory):
         self.register_as_type(self.__MongoDbPersistenceDescriptor, EntitiesMongoDbPersistence)
         self.register_as_type(self.__EntitiesPostgresPersistence, EntitiesPostgresPersistence)
         self.register_as_type(self.__EntitiesJsonPostgresPersistence, EntitiesJsonPostgresPersistence)
-        # self.register_as_type(self.__EntitiesMySqlPersistence, EntitiesMySqlPersistence)
-        # self.register_as_type(self.__EntitiesJsonMySqlPersistence, EntitiesJsonMySqlPersistence)
-        # self.register_as_type(self.__EntitiesSqlServerPersistence, EntitiesSqlServerPersistence)
-        # self.register_as_type(self.__EntitiesJsonSqlServerPersistence, EntitiesJsonSqlServerPersistence)
+        self.register_as_type(self.__EntitiesMySqlPersistence, EntitiesMySqlPersistence)
+        self.register_as_type(self.__EntitiesJsonMySqlPersistence, EntitiesJsonMySqlPersistence)
+        self.register_as_type(self.__EntitiesSqlServerPersistence, EntitiesSqlServerPersistence)
+        self.register_as_type(self.__EntitiesJsonSqlServerPersistence, EntitiesJsonSqlServerPersistence)
         self.register_as_type(self.__ControllerDescriptor, EntitiesController)
         self.register_as_type(self.__CommandableHttpServiceV1Descriptor, EntitiesCommandableHttpServiceV1)
         self.register_as_type(self.__CommandableGrpcServiceV1Descriptor, EntitiesCommandableGrpcServiceV1)

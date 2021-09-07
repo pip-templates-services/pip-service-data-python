@@ -29,4 +29,6 @@ Get-ChildItem -Path "." -Include "$($component.name.replace('-', '_'))/*.pyc" -R
 Get-ChildItem -Path "." -Include "$($component.name.replace('-', '_'))/**/*.pyc" -Recurse | Remove-Item -Force 
 Get-ChildItem -Path "." -Include "$($component.name.replace('-', '_'))/__pycache__" -Recurse | Remove-Item -Force 
 Get-ChildItem -Path "." -Include "test/__pycache__" -Recurse | Remove-Item -Recurse -Force 
-Get-ChildItem -Path "." -Include "test/**/__pycache__" -Recurse | Remove-Item -Recurse -Force 
+Get-ChildItem -Path "." -Include "test/**/__pycache__" -Recurse | Remove-Item -Recurse -Force
+Get-ChildItem -Path "." -Include "test/.pytest_cache" -Recurse | Remove-Item -Recurse -Force
+Get-ChildItem -Path "." -Include "test/**/.pytest_cache" -Recurse | Remove-Item -Recurse -Force
