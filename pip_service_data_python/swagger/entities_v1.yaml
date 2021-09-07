@@ -43,8 +43,8 @@ paths:
               schema:
                 type: 'array'
                 items:
-                  $ref: "#/definitions/entity"
-                
+                  $ref: "#/components/schemas/entity"
+
     post:
       tags:
         - v1/entities
@@ -55,7 +55,7 @@ paths:
             schema:
               properties:
                 entity:
-                  $ref: "#/definitions/entity"
+                  $ref: "#/components/schemas/entity"
               required:
                 - entity
       responses:
@@ -64,8 +64,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/definitions/entity"
-                
+                $ref: "#/components/schemas/entity"
+
     put:
       tags:
         - v1/entities
@@ -76,7 +76,7 @@ paths:
             schema:
               properties:
                 entity:
-                  $ref: "#/definitions/entity"
+                  $ref: "#/components/schemas/entity"
               required:
                 - entity
       responses:
@@ -85,9 +85,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/definitions/entity"
-      
-      
+                $ref: "#/components/schemas/entity"
+
+
   /v1/entities/{id}:
     get:
       tags:
@@ -101,15 +101,15 @@ paths:
         required: true
         schema:
           type: 'string'
-      
+
       responses:
         200:
           description: 'Successful response'
           content:
             application/json:
               schema:
-                $ref: "#/definitions/entity"
-                
+                $ref: "#/components/schemas/entity"
+
   /v1/entities/name/{entity_name}:
     get:
       tags:
@@ -123,15 +123,15 @@ paths:
         required: true
         schema:
           type: 'string'
-      
+
       responses:
         200:
           description: 'Successful response'
           content:
             application/json:
               schema:
-                $ref: "#/definitions/entity"
-                            
+                $ref: "#/components/schemas/entity"
+
   /v1/entities/{entity_id}:
     delete:
       tags:
@@ -144,41 +144,32 @@ paths:
         required: true
         schema:
           type: 'string'
-          
+
       responses:
         200:
           description: 'Successful delete'
           content:
             application/json:
               schema:
-               $ref: "#/definitions/entity"
-                
-definitions:
-  entity:
-    description: 'json instance of entity'
-    type: 'object'
-    properties:
-      id:
-        type: 'string'
-        required: false
-      site_id:
-        type: 'string'
-        required: true
-      type:
-        type: 'string'
-        required: false
-      name:
-        type: 'string'
-        required: true
-      name:
-        type: 'string'
-        required: false
-      content:
-        type: 'array'
-        items:
-          type: 'integer'
-        required: false
-      radius:
-        type: 'number'
-        required: false
-    
+               $ref: "#/components/schemas/entity"
+
+components:
+  schemas:
+    entity:
+      description: 'json instance of entity'
+      type: 'object'
+      properties:
+        id:
+          type: 'string'
+        site_id:
+          type: 'string'
+        type:
+          type: 'string'
+        name:
+          type: 'string'
+        content:
+          type: 'array'
+          items:
+            type: 'integer'
+      required:
+        - site_id
